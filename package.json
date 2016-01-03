@@ -1,0 +1,16 @@
+{
+  "title": "Curate",
+  "name": "curate",
+  "version": "0.0.1",
+  "description": "Track your research",
+  "main": "index.js",
+  "author": "Conor O'Shea",
+  "engines": {
+    "firefox": ">=38.0a1",
+    "fennec": ">=38.0a1"
+  },
+  "license": "MIT",
+  "keywords": [
+    "jetpack"
+  ]
+}

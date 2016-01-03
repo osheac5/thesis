@@ -1,0 +1,31 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="sidebar-style.css">
+    <link rel="stylesheet" type="text/css" href="css/tagmanager.css">
+    <script src="js/jquery-2.1.4.min.js"></script>
+    <script src="js/tagmanager.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      
+      <form action="action_page.php">
+        
+        <div class="group"> 
+          <input class="tag-input" type="text" required>
+          <span class="highlight"></span>
+          <span class="bar"></span>
+          <label>ADD TAGS</label>
+        </div>
+        
+        <script>jQuery(".tag-input").tagsManager();</script>
+        
+        <input type="submit" value="SAVE">
+        
+        <div class="save-button raised">SAVE</div>
+      
+      </form>
+    
+    </div>
+  </body>
+</html>
