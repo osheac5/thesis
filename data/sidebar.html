@@ -5,11 +5,16 @@
     <link rel="stylesheet" type="text/css" href="css/tagmanager.css">
     <script src="js/jquery-2.1.4.min.js"></script>
     <script src="js/tagmanager.js"></script>
+    <script type="text/javascript" src="sidebar.js"></script>
   </head>
   <body>
     <div class="container">
       
-      <form action="action_page.php">
+      <p id="highlighted-text" class="highlighted-text"></p>
+      
+      <br/>
+      
+      <form action="">
         
         <div class="group"> 
           <input class="tag-input" type="text" required>
@@ -20,9 +25,7 @@
         
         <script>jQuery(".tag-input").tagsManager();</script>
         
-        <input type="submit" value="SAVE">
-        
-        <div class="save-button raised">SAVE</div>
+        <div onclick="onSave()" id="submit_button" class="save-button raised"><input type="submit" value="SAVE"></div>
       
       </form>
     
