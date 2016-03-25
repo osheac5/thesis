@@ -17,15 +17,15 @@
       <form action="">
         
         <div class="group"> 
-          <input class="tag-input" type="text" required>
+          <input class="tag-input" id="tag-input" type="text" required>
           <span class="highlight"></span>
           <span class="bar"></span>
           <label>ADD TAGS</label>
         </div>
         
-        <script>jQuery(".tag-input").tagsManager();</script>
+        <script>jQuery(".tag-input").tagsManager({prefilled: ["Pisa", "Rome"], hiddenTagListId: 'hiddenTagListA'});</script>
         
-        <div onclick="onSave()" id="submit_button" class="save-button raised"><input type="submit" value="SAVE"></div>
+        <input onclick="onSave()" class="save-button" type="submit" value="SAVE">
       
       </form>
     

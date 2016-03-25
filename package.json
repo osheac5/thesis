@@ -12,5 +12,8 @@
   "license": "MIT",
   "keywords": [
     "jetpack"
-  ]
+  ],
+  "dependencies": {
+    "dbpedia-spotlight": "^0.5.27"
+  }
 }

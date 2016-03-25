@@ -3,7 +3,11 @@ var buttons = require('sdk/ui/button/action');
 var tabs = require("sdk/tabs");
 var simpleStorage = require('sdk/simple-storage');
 
+simpleStorage.storage.text = [];
+simpleStorage.storage.count = 0;
 simpleStorage.storage.annotations = [];
+simpleStorage.storage.urls = [];
+simpleStorage.storage.times = [];
 
 var button = buttons.ActionButton({
   id: "mozilla-link",
@@ -39,33 +43,19 @@ var sidebar = ui.Sidebar({
   url: require("sdk/self").data.url("sidebar.html"),
   onReady: function (worker) {
     worker.port.emit("highlighted-text", selection.text);
-    worker.port.on("data", function(data) {
-      console.log("Index: " + data);
-      simpleStorage.storage.annotations.push(data);
+    worker.port.on("annotations", function(data) {
+      console.log("Annotations: " + data);
+      
+      var annotation = [simpleStorage.storage.count, Date.now(), tabs.activeTab.url, data[0], data[1]]
+      simpleStorage.storage.annotations.push(annotation);
+      simpleStorage.storage.urls.push(tabs.activeTab.url);
       console.log(simpleStorage.storage.annotations);
       sidebar.hide();
     });
-    /*worker.port.on("data", function(data) {
-      if (!simpleStorage.storage.annotations) {
-        simpleStorage.storage.annotations = [];
-      }
-      
-      function handleNewAnnotation(data, anchor) {
-        var newAnnotation = new Annotation(annotationText, anchor);
-        simpleStorage.storage.annotations.push(newAnnotation);
-      }
-      console.log(data + "123");
-    });*/
   }
 });
-/*
-var panel = require("sdk/panel").Panel({
-  width: 180,
-  height: 180,
-  contentURL: "https://en.wikipedia.org/w/index.php?title=Jetpack&useformat=mobile"
-});
-*/
-/* -------- *** ------- */
+
+/* -------- PANEL ------- */
 var { ToggleButton } = require('sdk/ui/button/toggle');
 var panels = require("sdk/panel");
 var self = require("sdk/self");
@@ -82,12 +72,19 @@ var button = ToggleButton({
 });
 
 var panel = panels.Panel({
-  width: 350,
+  width: 500,
   height: 280,
   contentURL: self.data.url("panel.html"),
-  onHide: handleHide
+  onHide: handleHide,
+  onShow: function (worker) {
+    panel.port.emit("annotations", simpleStorage.storage.annotations);
+  }
 });
-
+/*
+function onShowing() {
+  console.log("panel is showing");
+}
+*/
 function handleChange(state) {
   if (state.checked) {
     panel.show({
