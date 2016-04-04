@@ -14,6 +14,7 @@
     "jetpack"
   ],
   "dependencies": {
-    "dbpedia-spotlight": "^0.5.27"
+    "dbpedia-spotlight": "^0.5.27",
+    "http": "0.0.0"
   }
 }

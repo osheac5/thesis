@@ -2,23 +2,28 @@ textsave = "";
 
 addon.port.on("highlighted-text", function(message) {
   
+  var text = message[0];
+  var tags = message[1];
+  
+  
+  jQuery(".tag-input").tagsManager({prefilled: tags});
   document.getElementById("tag-input").focus();
   
-  textsave = message;
+  textsave = text;
+  var shortened_text = text;
 
-  if (message.length > 150) {
-    message = message.substring(0, 150);
-    message = message.concat("...\"");
+  if (shortened_text.length > 150) {
+    shortened_text = text.substring(0, 150);
+    shortened_text = shortened_text.concat("...\"");
     prefix = "\""
-    message = prefix.concat(message);
+    shortened_text = prefix.concat(shortened_text);
   }
-  
-  document.getElementById("highlighted-text").innerHTML = message;
+
+  document.getElementById("highlighted-text").innerHTML = shortened_text;
   
 });
 
 function onSave() {
-  console.log("onSave");
   var annotations = jQuery(".tag-input").tagsManager('tags');
   
   var data = [textsave, annotations];
