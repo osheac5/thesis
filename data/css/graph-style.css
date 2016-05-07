@@ -1,18 +1,12 @@
-.chart rect {
-  fill: steelblue;
-}
-
-.chart text {
-  fill: white;
-  font: 10px sans-serif;
-  text-anchor: middle;
+.bar {
+  fill: #455A64;
 }
 
 .bar:hover {
-  fill: brown;
+  fill: #FF5722;
 }
 
-.axis text {
+.axis {
   font: 10px sans-serif;
 }
 
@@ -25,4 +19,35 @@
 
 .x.axis path {
   display: none;
+}
+
+.arrow-container {
+  height: 60px;
+  width: 300px;
+  margin: 0 auto;
+}
+
+.arrow {
+  display: inline-block;
+  height: 60px;
+  width: 60px;
+  margin: 0px 40px;
+}
+
+.left-arrow {
+  background-image: url("../images/arrow-l-b.png");
+  background-size: 60px 60px;
+}
+
+.left-arrow:hover {
+  background-image: url("../images/arrow-l-o.png");
+}
+
+.right-arrow {
+  background-image: url("../images/arrow-r-b.png");
+  background-size: 60px 60px;
+}
+
+.right-arrow:hover {
+  background-image: url("../images/arrow-r-o.png");
 }

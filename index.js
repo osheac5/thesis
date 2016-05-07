@@ -46,7 +46,7 @@ var sidebar = ui.Sidebar({
   url: require("sdk/self").data.url("sidebar.html"),
   onReady: function (worker) {
     input = selection.text; 
-    /*request({
+    request({
       url: "http://spotlight.sztaki.hu:2222/rest/annotate",
       content: {text : input,
         confidence: 0.5,
@@ -70,9 +70,7 @@ var sidebar = ui.Sidebar({
         var message = [selection.text, tags];
         worker.port.emit("highlighted-text", message);
       }
-    }).post();*/
-    var message = [selection.text, ""];
-    worker.port.emit("highlighted-text", message);
+    }).post();
     
     worker.port.on("annotations", function(data) {
       var annotation = [simpleStorage.storage.count, Date.now(), tabs.activeTab.url, data[0], data[1]];
@@ -105,6 +103,18 @@ var panel = panels.Panel({
   onHide: handleHide,
   onShow: function (worker) {
     panel.port.emit("annotations", simpleStorage.storage.annotations);
+    panel.port.on("url", function(url) {
+      console.log("At index - url: " + url);
+      if (typeof url == "number") {
+        console.log("Annotations before: " + simpleStorage.storage.annotations);
+        simpleStorage.storage.annotations.splice(url, 1);
+        console.log("Annotations after: " + simpleStorage.storage.annotations)
+      }
+      else{
+        tabs.open(url);
+      }
+      panel.hide();
+    });
   }
 });
 
@@ -134,7 +144,7 @@ var visbutton = ToggleButton({
 });
 
 var graphPanel = panels.Panel({
-  width: 800,
+  width: 850,
   height: 800,
   contentURL: self.data.url("graph.html"),
   onHide: handleHide,

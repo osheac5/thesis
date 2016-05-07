@@ -92,7 +92,7 @@ input:focus ~ .bar:before, input:focus ~ .bar:after {
     cursor: pointer;
     font-size: small;
     color: white;
-    background-color: #455A64;
+    background-color: #FF5722;
 }
 
 .raised {

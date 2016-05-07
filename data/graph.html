@@ -9,8 +9,11 @@
   
   <body>
 
-    
-    <svg class="chart"></svg>
+    <div class="arrow-container">
+      <div class="arrow left-arrow" onclick="moveBack()"></div>
+      <div class="arrow right-arrow" onclick="moveForward()"></div>
+    </div>  
+    <div id="chart"></div>
     
     <script src="js/d3.min.js"  charset="utf-8"></script>
     <script type="text/javascript" src="graph.js"></script>
